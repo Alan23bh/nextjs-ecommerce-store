@@ -14,7 +14,6 @@ import { Suspense } from "react";
 import AddToCartButton from "./AddToCartButton";
 
 import Link from "next/link";
-import Grid from "@mui/material/Grid";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -22,7 +21,16 @@ type PageProps = {
 
 export default async function ProductPage({ params }: PageProps) {
   const { id } = await params;
-  const product: Product = await getProduct(id);
+  const product = await getProduct(id);
+  if (!product) {
+    return (
+      <Container sx={{ py: 6 }}>
+        <Typography variant="h5" textAlign="center">
+          Product not found or temporarily unavailable.
+        </Typography>
+      </Container>
+    );
+  }
   const allProduct: Product[] = await getProducts();
 
   // Related logic
@@ -97,7 +105,7 @@ export default async function ProductPage({ params }: PageProps) {
       </Box>
 
       {/* RELATED PRODUCTS SECTION */}
-      <Box sx={{ mt: 8 }}>
+      <Box sx={{ mt: 8, pt: 8 }}>
         <Typography sx={{ textAlign: "center" }} variant="h5" gutterBottom>
           You might also like
         </Typography>
@@ -165,14 +173,14 @@ export default async function ProductPage({ params }: PageProps) {
                   pt: 0,
                 }}
               >
-                <Button
-                  component={Link}
+                <Link
                   href={`/products/${p.id}`}
-                  size="small"
-                  sx={{ textTransform: "none" }}
+                  style={{ textDecoration: "none" }}
                 >
-                  View
-                </Button>
+                  <Button size="small" sx={{ textTransform: "none" }}>
+                    View
+                  </Button>
+                </Link>
 
                 <AddToCartButton product={p} />
               </CardActions>
