@@ -2,7 +2,6 @@ import { getProduct, getProducts } from "@/app/lib/api";
 import { Product } from "@/app/types/Product";
 import {
   Container,
-  Grid,
   Box,
   Typography,
   Button,
@@ -13,8 +12,9 @@ import {
 } from "@mui/material";
 import { Suspense } from "react";
 import AddToCartButton from "./AddToCartButton";
-import NextLink from "next/link";
+
 import Link from "next/link";
+import Grid from "@mui/material/Grid";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -31,11 +31,17 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <Container sx={{ py: 6, maxWidth: "md" }}>
-      <Grid container spacing={6} justifyContent="center">
-        <Grid
-          item
-          xs={12}
-          md={5}
+      {/* Main Product area */}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "1fr 1.2fr" },
+          gap: 6,
+          alignItems: "center",
+        }}
+      >
+        {/* Image column */}
+        <Box
           sx={{
             display: "flex",
             justifyContent: "center",
@@ -56,9 +62,10 @@ export default async function ProductPage({ params }: PageProps) {
               backgroundColor: "white",
             }}
           />
-        </Grid>
+        </Box>
 
-        <Grid item xs={12} md={7}>
+        {/* Text / info column */}
+        <Box>
           <Typography variant="h4" textAlign="center" gutterBottom>
             {product.title}
           </Typography>
@@ -86,83 +93,92 @@ export default async function ProductPage({ params }: PageProps) {
               <AddToCartButton product={product} />
             </Suspense>
           </Box>
-        </Grid>
-      </Grid>
-      {/* // RELATED PRODUCTS SECTION */}
+        </Box>
+      </Box>
+
+      {/* RELATED PRODUCTS SECTION */}
       <Box sx={{ mt: 8 }}>
         <Typography sx={{ textAlign: "center" }} variant="h5" gutterBottom>
           You might also like
         </Typography>
 
-        <Grid
-          sx={{ display: "flex", justifyContent: "center" }}
-          container
-          spacing={3}
+        <Box
+          sx={{
+            mt: 3,
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(1, minmax(0, 1fr))",
+              sm: "repeat(2, minmax(0, 1fr))",
+              md: "repeat(4, minmax(0, 1fr))",
+            },
+            gap: 3,
+            justifyItems: "center",
+          }}
         >
           {related.map((p) => (
-            <Grid key={p.id} item xs={12} sm={6} md={3}>
-              <Card
+            <Card
+              key={p.id}
+              sx={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                "&:hover": {
+                  transform: "translateY(-4px)",
+                  boxShadow: 4,
+                },
+                transition: "transform 0.15s ease, box-shadow 0.15s ease",
+              }}
+            >
+              <CardMedia
+                component="img"
+                image={p.image}
+                alt={p.title}
                 sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  "&:hover": {
-                    transform: "translateY(-4px)",
-                    boxShadow: 4,
-                  },
-                  transition: "transform 0.15s ease, box-shadow 0.15s ease",
+                  height: 140,
+                  objectFit: "contain",
+                  p: 1.5,
                 }}
-              >
-                <CardMedia
-                  component="img"
-                  image={p.image}
-                  alt={p.title}
+              />
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography
+                  variant="subtitle2"
                   sx={{
-                    height: 140,
-                    objectFit: "contain",
-                    p: 1.5,
-                  }}
-                />
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography
-                    variant="subtitle2"
-                    sx={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                      mb: 1,
-                    }}
-                  >
-                    {p.title}
-                  </Typography>
-                  <Typography variant="subtitle1" fontWeight={600}>
-                    ${p.price.toFixed(2)}
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{
-                    justifyContent: "space-between",
-                    px: 2,
-                    pb: 2,
-                    pt: 0,
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    mb: 1,
                   }}
                 >
-                  <Link
-                    href={`/products/${p.id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Button size="small" sx={{ textTransform: "none" }}>
-                      View
-                    </Button>
-                  </Link>
+                  {p.title}
+                </Typography>
+                <Typography variant="subtitle1" fontWeight={600}>
+                  ${p.price.toFixed(2)}
+                </Typography>
+              </CardContent>
+              <CardActions
+                sx={{
+                  justifyContent: "space-between",
+                  px: 2,
+                  pb: 2,
+                  pt: 0,
+                }}
+              >
+                <Button
+                  component={Link}
+                  href={`/products/${p.id}`}
+                  size="small"
+                  sx={{ textTransform: "none" }}
+                >
+                  View
+                </Button>
 
-                  <AddToCartButton product={p} />
-                </CardActions>
-              </Card>
-            </Grid>
+                <AddToCartButton product={p} />
+              </CardActions>
+            </Card>
           ))}
-        </Grid>
+        </Box>
       </Box>
     </Container>
   );
