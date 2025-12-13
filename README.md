@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🛍️ Next-Shop • E-Commerce Store
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![MUI](https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A fully responsive **E-Commerce web application** built with **Next.js 16 (App Router)**, **React**, **TypeScript**, and **Material UI**.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Products were originally fetched from **FakeStoreAPI**, but to ensure stable production builds on Vercel, all product objects were copied into a local file (`lib/productsData.ts`).  
+This makes the app fast, reliable, and deployment-safe.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Live Demo
 
-To learn more about Next.js, take a look at the following resources:
+🔗 **Vercel Deployment:** https://nextjs-ecommerce-store-psi.vercel.app/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⭐ Features
 
-## Deploy on Vercel
+### 🛍 Product Catalog
+- Fully responsive product grid (desktop → tablet → mobile)
+- Product cards with images, price, and short description
+- “View” and “Add to Cart” actions
+- Clean layout using MUI Grid + Card components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🛒 Shopping Cart
+- Global cart state using **React Context + useReducer**
+- Add / remove items
+- Increment / decrement item quantities
+- Automatic total calculation
+- Snackbar notifications for cart actions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 📦 Local Product Data (No API Dependency)
+- Products are stored locally in `productsData.ts`
+- Zero risk of API downtime or deployment errors
+
+### 🎨 UI & Styling
+- Clean, modern interface using **Material UI**
+- Custom button colors and hover states
+- Tailwind installed but minimally used (MUI handled all layout & styling)
+- Responsive spacing & typography
+
+### 📱 Fully Responsive Layout
+- Product cards stack beautifully on mobile
+- Cart page adapts to all screen sizes
+- Flexible MUI Grid system
+
+---
+
+## 🧰 Tech Stack
+
+| Category | Technologies |
+|---------|--------------|
+| **Framework** | Next.js 16 (App Router) |
+| **Language** | TypeScript |
+| **UI Library** | Material UI (MUI) |
+| **State Management** | React Context + useReducer |
+| **Data** | Local FakeStoreAPI dataset |
+| **Deployment** | Vercel |
+
+---
+
+## 🧩 What I Learned
+
+- How to structure an e-commerce UI with reusable React components  
+- Managing global state using React Context + useReducer  
+- Working with TypeScript in the App Router  
+- Designing responsive layouts with Material UI  
+- Preparing an app for production deployment on Vercel  
+- Avoiding deployment errors by replacing external API calls with a local dataset
+
+
+---
+
+## 🧠 Implementation Details
+
+### 🛒 Cart Logic
+The cart uses:
+- **`useReducer`** for predictable state transitions  
+- A strict **Action union type**  
+- Cases: `ADD`, `REMOVE`, `INCREMENT`, `DECREMENT`, `CLEAR`  
+- Immutable updates  
+- Automatic total calculation on render  
+
+### 📦 Reliable Product Loading
+Instead of calling Fakestore API:
+
+```ts
+import { productsData } from "@/lib/productsData";
+
