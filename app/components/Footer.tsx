@@ -36,7 +36,7 @@ export default function Footer() {
         >
           <Typography
             variant="body2"
-            sx={{ opacity: 0.9, textAlign: "center" }}
+            sx={{ opacity: 0.9, textAlign: "center", fontSize: 18 }}
           >
             © {year} Next-Shop · Built with Next.js, TypeScript & MUI
           </Typography>

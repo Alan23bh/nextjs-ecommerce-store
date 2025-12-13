@@ -11,7 +11,13 @@ export default function Navbar() {
 
   return (
     <AppBar position="sticky">
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Toolbar
+        sx={{
+          color: "primary.contrastText",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <Link href="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Typography variant="h6">Next-Shop</Typography>
         </Link>

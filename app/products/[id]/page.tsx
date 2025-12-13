@@ -2,6 +2,7 @@ import { getProduct, getProducts } from "@/app/lib/api";
 import { Product } from "@/app/types/Product";
 import {
   Container,
+  CardActionArea,
   Box,
   Typography,
   Button,
@@ -12,7 +13,6 @@ import {
 } from "@mui/material";
 import { Suspense } from "react";
 import AddToCartButton from "./AddToCartButton";
-
 import Link from "next/link";
 
 type PageProps = {
@@ -138,50 +138,63 @@ export default async function ProductPage({ params }: PageProps) {
                 transition: "transform 0.15s ease, box-shadow 0.15s ease",
               }}
             >
-              <CardMedia
-                component="img"
-                image={p.image}
-                alt={p.title}
-                sx={{
-                  height: 140,
-                  objectFit: "contain",
-                  p: 1.5,
-                }}
-              />
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography
-                  variant="subtitle2"
+              <Link
+                href={`/products/${p.id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <CardActionArea
                   sx={{
-                    display: "-webkit-box",
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                    mb: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "stretch",
+                    flexGrow: 1,
                   }}
+                  href={`/products/${p.id}`}
                 >
-                  {p.title}
-                </Typography>
-                <Typography variant="subtitle1" fontWeight={600}>
-                  ${p.price.toFixed(2)}
-                </Typography>
-              </CardContent>
+                  <CardMedia
+                    component="img"
+                    image={p.image}
+                    alt={p.title}
+                    sx={{
+                      height: 140,
+                      objectFit: "contain",
+                      p: 1.5,
+                    }}
+                  />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                        mb: 1,
+                        textAlign: "center",
+                        minHeight: 40,
+                      }}
+                    >
+                      {p.title}
+                    </Typography>
+                    <Typography
+                      sx={{ textAlign: "center" }}
+                      variant="subtitle1"
+                      fontWeight={600}
+                    >
+                      ${p.price.toFixed(2)}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Link>
               <CardActions
                 sx={{
-                  justifyContent: "space-between",
                   px: 2,
                   pb: 2,
                   pt: 0,
+                  mt: "auto",
+                  justifyContent: "center",
                 }}
               >
-                <Link
-                  href={`/products/${p.id}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button size="small" sx={{ textTransform: "none" }}>
-                    View
-                  </Button>
-                </Link>
-
                 <AddToCartButton product={p} />
               </CardActions>
             </Card>

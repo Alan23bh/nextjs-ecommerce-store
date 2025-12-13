@@ -58,7 +58,7 @@ export default function CartPage() {
                       aria-label="delete"
                       onClick={() => {
                         removeFromCart(item.id),
-                          notify("Item removed from cart", "info");
+                          notify("Item removed from cart", "error");
                       }}
                     >
                       <DeleteIcon />
@@ -104,7 +104,7 @@ export default function CartPage() {
               variant="outlined"
               onClick={() => {
                 clearCart();
-                notify("Cart cleared", "warning");
+                notify("Cart cleared", "error");
               }}
             >
               Clear cart
