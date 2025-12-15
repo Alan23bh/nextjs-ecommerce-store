@@ -11,7 +11,7 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
-import { Suspense } from "react";
+// import { Suspense } from "react";
 import AddToCartButton from "./AddToCartButton";
 import Link from "next/link";
 
@@ -38,7 +38,12 @@ export default async function ProductPage({ params }: PageProps) {
   const related = allProduct.filter((p) => p.id !== product.id).slice(0, 4);
 
   return (
-    <Container sx={{ py: 6, maxWidth: "md" }}>
+    <Container
+      sx={{
+        py: 6,
+        maxWidth: "md",
+      }}
+    >
       {/* Main Product area */}
       <Box
         sx={{
@@ -97,9 +102,7 @@ export default async function ProductPage({ params }: PageProps) {
           </Typography>
 
           <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-            <Suspense fallback={null}>
-              <AddToCartButton product={product} />
-            </Suspense>
+            <AddToCartButton product={product} />
           </Box>
         </Box>
       </Box>
@@ -140,7 +143,7 @@ export default async function ProductPage({ params }: PageProps) {
             >
               <Link
                 href={`/products/${p.id}`}
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", width: "100%" }}
               >
                 <CardActionArea
                   sx={{
@@ -148,8 +151,8 @@ export default async function ProductPage({ params }: PageProps) {
                     flexDirection: "column",
                     alignItems: "stretch",
                     flexGrow: 1,
+                    textDecoration: "none",
                   }}
-                  href={`/products/${p.id}`}
                 >
                   <CardMedia
                     component="img"
@@ -184,8 +187,9 @@ export default async function ProductPage({ params }: PageProps) {
                       ${p.price.toFixed(2)}
                     </Typography>
                   </CardContent>
-                </CardActionArea>
+                </CardActionArea>{" "}
               </Link>
+
               <CardActions
                 sx={{
                   px: 2,

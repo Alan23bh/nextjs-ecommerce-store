@@ -34,7 +34,15 @@ import { productsData } from "./productsData";
 
 //   return product;
 // }
+
+function sleep(ms: number) {
+  return new Promise((res) => setTimeout(res, ms));
+}
+
 export async function getProducts(): Promise<Product[]> {
+  // Simulate real network latency so loading UI can be seen
+  await sleep(250);
+
   // still async so you don’t have to change other code
   return productsData;
 }
