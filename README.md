@@ -1,23 +1,36 @@
 
-# 🛍️ Atlas Grooming — Fullstack E-Commerce App
+# 🛍️ Atlas Grooming — E-Commerce App
+
+A modern, e-commerce application built with **Next.js 16 (App Router)**, **TypeScript**, **Supabase**, and **Material UI**.
+
+This project simulates a real-world online store with dynamic product data, persistent cart state, and a complete checkout flow.
 
 ## 📸 Screenshots
 
-### 🏠 Home Page
-![Home](./public/screenshots/home.png)
+<table>
+  <tr>
+    <td align="center">
+      <b>🏠 Home</b><br/>
+      <img src="./public/screenshots/home.png" width="350"/>
+    </td>
+    <td align="center">
+      <b>🛍️ Product</b><br/>
+      <img src="./public/screenshots/product.png" width="350"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>🛒 Cart</b><br/>
+      <img src="./public/screenshots/cart.png" width="350"/>
+    </td>
+    <td align="center">
+      <b>💳 Checkout</b><br/>
+      <img src="./public/screenshots/checkout.png" width="350"/>
+    </td>
+  </tr>
+</table>
 
-### 🛍️ Product Page
-![Product](./public/screenshots/product.png)
 
-### 🛒 Cart
-![Cart](./public/screenshots/cart.png)
-
-### 💳 Checkout
-![Checkout](./public/screenshots/checkout.png)
-
-A modern, fullstack e-commerce application built with **Next.js 16 (App Router)**, **TypeScript**, **Supabase**, and **Material UI**.
-
-This project simulates a real-world online store with dynamic product data, persistent cart state, and a complete checkout flow.
 
 ---
 
