@@ -23,8 +23,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next Shop",
-  description: "E-commerce built with Next.js & MUI",
+  title: "Atlas Grooming",
+  description:
+    "A modern fullstack e-commerce application built with Next.js, Supabase, TypeScript, and Material UI.",
 };
 
 export default function RootLayout({
