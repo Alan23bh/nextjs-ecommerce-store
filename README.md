@@ -1,95 +1,93 @@
 
-# 🛍️ Next-Shop • E-Commerce Store
+# 🛍️ Atlas Grooming — Fullstack E-Commerce App
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![MUI](https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+## 📸 Screenshots
 
+### 🏠 Home Page
+![Home](./public/screenshots/home.png)
 
-A fully responsive **E-Commerce web application** built with **Next.js 16 (App Router)**, **React**, **TypeScript**, and **Material UI**.
+### 🛍️ Product Page
+![Product](./public/screenshots/product.png)
 
-Products were originally fetched from **FakeStoreAPI**, but to ensure stable production builds on Vercel, all product objects were copied into a local file (`lib/productsData.ts`).  
-This makes the app fast, reliable, and deployment-safe.
+### 🛒 Cart
+![Cart](./public/screenshots/cart.png)
+
+### 💳 Checkout
+![Checkout](./public/screenshots/checkout.png)
+
+A modern, fullstack e-commerce application built with **Next.js 16 (App Router)**, **TypeScript**, **Supabase**, and **Material UI**.
+
+This project simulates a real-world online store with dynamic product data, persistent cart state, and a complete checkout flow.
 
 ---
 
-## 🚀 Live Demo
+## 🌐 Live Demo
 
-🔗 **Vercel Deployment:** https://nextjs-ecommerce-store-psi.vercel.app/
+👉 https://nextjs-ecommerce-store-psi.vercel.app/
 
 ---
 
-## ⭐ Features
+## ✨ Features
 
-### 🛍 Product Catalog
-- Fully responsive product grid (desktop → tablet → mobile)
-- Product cards with images, price, and short description
-- “View” and “Add to Cart” actions
-- Clean layout using MUI Grid + Card components
+### 🧾 Product Catalog
+- Dynamic product data powered by **Supabase**
+- Category filtering (Skincare, Hair, Beard, Kits)
+- Product detail pages with related items
+- Responsive grid layout
 
 ### 🛒 Shopping Cart
 - Global cart state using **React Context + useReducer**
 - Add / remove items
-- Increment / decrement item quantities
+- Increment / decrement quantities
 - Automatic total calculation
-- Snackbar notifications for cart actions
+- **Persistent cart (localStorage)**
 
-### 📦 Local Product Data (No API Dependency)
-- Products are stored locally in `productsData.ts`
-- Zero risk of API downtime or deployment errors
+### 💳 Checkout Flow (Demo)
+- Shipping form UI
+- Order summary with subtotal + shipping
+- “Place order” confirmation screen
+- Simulates real e-commerce UX
 
-### 🎨 UI & Styling
-- Clean, modern interface using **Material UI**
-- Custom button colors and hover states
-- Tailwind installed but minimally used (MUI handled all layout & styling)
-- Responsive spacing & typography
-
-### 📱 Fully Responsive Layout
-- Product cards stack beautifully on mobile
-- Cart page adapts to all screen sizes
-- Flexible MUI Grid system
-
----
-
-## 🧰 Tech Stack
-
-| Category | Technologies |
-|---------|--------------|
-| **Framework** | Next.js 16 (App Router) |
-| **Language** | TypeScript |
-| **UI Library** | Material UI (MUI) |
-| **State Management** | React Context + useReducer |
-| **Data** | Local FakeStoreAPI dataset |
-| **Deployment** | Vercel |
+### 🖼️ Product Images
+- Stored locally (`/public/products`)
+- Rendered across:
+  - Product grid
+  - Product detail page
+  - Cart
+  - Checkout
 
 ---
 
-## 🧩 What I Learned
+## 🧠 Key Improvements (Fullstack Upgrade)
 
-- How to structure an e-commerce UI with reusable React components  
-- Managing global state using React Context + useReducer  
-- Working with TypeScript in the App Router  
-- Designing responsive layouts with Material UI  
-- Preparing an app for production deployment on Vercel  
-- Avoiding deployment errors by replacing external API calls with a local dataset
+- Migrated from static product data → **Supabase database**
+- Introduced **client-side persistence (localStorage hydration)**
+- Built a **multi-step checkout flow**
+- Improved UI/UX consistency across all pages
+- Optimized for deployment (Vercel-ready)
+
+---
+
+## 🧱 Tech Stack
+
+| Category | Technology |
+|--------|-----------|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| UI | Material UI (MUI) |
+| State | React Context + useReducer |
+| Backend | Supabase |
+| Storage | Supabase + Local images |
+| Deployment | Vercel |
+
+---
 
 
 ---
 
-## 🧠 Implementation Details
-
-### 🛒 Cart Logic
-The cart uses:
-- **`useReducer`** for predictable state transitions  
-- A strict **Action union type**  
-- Cases: `ADD`, `REMOVE`, `INCREMENT`, `DECREMENT`, `CLEAR`  
-- Immutable updates  
-- Automatic total calculation on render  
-
-### 📦 Reliable Product Loading
-Instead of calling Fakestore API:
-
-```ts
-import { productsData } from "@/lib/productsData";
-
+## 🧪 Future Improvements
+- Stripe integration (test mode)
+- User authentication (Supabase Auth)
+- Order persistence (database)
+- Admin dashboard (add/edit products)
+- Inventory management
